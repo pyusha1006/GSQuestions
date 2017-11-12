@@ -1,0 +1,57 @@
+public class Stats {                                          //Time Complexity: O(n)
+	public static int findRepeatFirst(String s)
+    {
+        // this is optimized method
+        int p = -1, i, asciiVal;
+ 
+        // initialized counts of occurrences of
+        // elements as zero
+        int MAX_CHAR = 256;
+        int hash[] = new int[MAX_CHAR];
+ 
+        // initialized positions
+        int pos[] = new int[MAX_CHAR];
+ 
+        for (i = 0; i < s.length(); i++)
+        {
+        	asciiVal = (int)s.charAt(i);
+            System.out.println("s.charAt(i): "+s.charAt(i)+" asciiVal: "+ asciiVal);
+            if (hash[asciiVal] == 0)
+            {
+                hash[asciiVal]++;
+                pos[asciiVal] = i;
+            }
+            else if (hash[asciiVal] == 1)
+                hash[asciiVal]++;
+        }
+ 
+        for (i = 0; i < MAX_CHAR; i++)
+        {
+            if (hash[i] == 2)
+            {
+            	System.out.println("p: "+ p);
+                if (p == -1) // base case
+                {  p = pos[i];
+                System.out.println("i: "+i+" pos[i]: "+ pos[i]+" p: "+p);
+                }
+                else if (p > pos[i]){
+                    p = pos[i];
+                    System.out.println("i: "+i+" pos[i]: "+ pos[i]);
+                }
+            }
+        }
+ 
+        return p;
+    }
+ 
+// Driver code
+    public static void main(String[] args)
+    {
+        String str = "oreeksforoogeeks";
+        int pos = findRepeatFirst(str);
+        if (pos == -1)
+            System.out.println("Not found");
+        else
+            System.out.println(str.charAt(pos));
+    }
+}
