@@ -6,6 +6,12 @@ public class Stats {                                                            
 		while (end < arrlength) {
 			System.out.println();
 			while (curr_sum <= targetNumber && end < arrlength){
+			
+				if (curr_sum <= 0 && targetNumber > 0)
+			    {
+				start = end;
+				curr_sum = 0;
+			    }
 				curr_sum += arr[end++];
 				System.out.print(curr_sum+" ");
 			}
