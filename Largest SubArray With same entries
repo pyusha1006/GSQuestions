@@ -1,0 +1,45 @@
+package practice.com.src.arrays;
+
+public class ContiguousMaxSameSubarray {                        //Time Complexity: O(n)
+	public static void main(String args[]) {
+		//String input = "";
+		String input1 = "100001";
+		String input2 = "aaabbbbbabc";
+		int[] out = ContiguousMaxSameSubarrayMethod(input2);
+		for (int i = 0; i < out.length; i++) {
+			System.out.print(out[i]+ " ");
+		}
+	}
+
+	public static int[] ContiguousMaxSameSubarrayMethod(String input) {
+
+		int[] result = new int[2];
+		if (input.equals(null) || input.length() == 0 || input.equals(" ")) {
+			result[0] = 0;
+			result[1] = -1;
+			return result;
+		}
+
+		int i = 1;
+		int longestSubString = 0;
+		int index = -1;
+		int count = 1;
+		char temp = input.charAt(0);
+		while (i< input.length()) {
+			char c = input.charAt(i);
+			if (temp == c) {
+				count++;
+				index = i;
+			} else {
+				count = 1;
+			}
+			temp = c;
+			i++;
+			longestSubString = Math.max(longestSubString, count);
+		}
+		index = index - (longestSubString-1);
+		result[0] = longestSubString;
+		result[1] = index;
+		return result;
+	}
+}
